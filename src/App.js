@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import { Text } from "@nikitamallya/react-ui-components";
+import { useState } from "react";
+import "./App.css";
+import "../src/assets/style/custom.scss";
+import TextUtils from "./components/TextUtils";
+import Alert from "./components/Alert";
 function App() {
+  const [alert, setAlert] = useState("");
+  const showAlert = (message, type) => {
+    setAlert({
+      msg: message,
+      type: type,
+    });
+  };
+
+  setTimeout(() => {
+    setAlert("");
+  }, 3000);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+        <nav>
+          <div className="container">
+            <Text
+              variant="h2"
+              content="Textify Pro"
+              color="white"
+              className="pt-3 pb-2"
+            />
+          </div>
+        </nav>
+        <Alert alert={alert} />
+        <div className="container">
+          <TextUtils showAlert={showAlert} />
+        </div>
+      </div>
   );
 }
 
